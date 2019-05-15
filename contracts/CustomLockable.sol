@@ -5,7 +5,7 @@ Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-    http://www.apache.org/licenses/LICENSE-2.0
+    http:///www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
@@ -22,13 +22,13 @@ import "./CustomAdmin.sol";
 ///@title Custom Lockable Contract
 ///@author Binod Nirvan
 ///@notice This contract enables xCrypt token admins
-//to lock tokens on individual wallet basis.
-//When tokens are locked on specific wallet,
-//they cannot transfer their balances
-//until the end of the locking period.
-//Furthermore, this feature is created to specifically
-//lock bounty, advisory, and team tokens
-//for a set period of time.
+///to lock tokens on individual wallet basis.
+///When tokens are locked on specific wallet,
+///they cannot transfer their balances
+///until the end of the locking period.
+///Furthermore, this feature is created to specifically
+///lock bounty, advisory, and team tokens
+///for a set period of time.
 contract CustomLockable is CustomAdmin {
   ///Locking list contains list of wallets and their respective release dates.
   mapping(address => uint256) public lockingList;
@@ -41,7 +41,7 @@ contract CustomLockable is CustomAdmin {
   event TokenUnlocked(address indexed _address);
   event LockingDisabled();
 
-  ///@notice Validates this transfer against the locking list.
+  ///@notice Reverts this transfer if the benficiary is in the locking list.
   modifier revertIfLocked(address _beneficiary) {
     require(!isLocked(_beneficiary), "The operation was cancelled because your tokens are locked.");
     _;
