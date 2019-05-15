@@ -27,7 +27,7 @@ contract TokenBase is StandardToken, TransferState, BulkTransfer, Reclaimable, B
   //solhint-disable
   uint8 public constant decimals = 18;
   string public constant name = "xCrypt Token";
-  string public constant symbol = "XCP";
+  string public constant symbol = "XCT";
   //solhint-enable
 
   uint256 internal constant MILLION = 1000000 * 1 ether;
@@ -40,7 +40,7 @@ contract TokenBase is StandardToken, TransferState, BulkTransfer, Reclaimable, B
     mintTokens(msg.sender, INITIAL_SUPPLY);
   }
 
-  ///@notice Transfers the specified value of XCP tokens to the destination address.
+  ///@notice Transfers the specified value of XCT tokens to the destination address.
   //Transfers can only happen when the transfer state is enabled.
   //Transfer state can only be enabled after the end of the crowdsale.
   ///@param _to The destination wallet address to transfer funds to.
