@@ -26,6 +26,7 @@ function destroyAndSend(address _recipient) public nonpayable
 * [BulkTransfer](BulkTransfer.md)
 * [BurnableToken](BurnableToken.md)
 * [CustomAdmin](CustomAdmin.md)
+* [CustomLockable](CustomLockable.md)
 * [CustomPausable](CustomPausable.md)
 * [ERC20](ERC20.md)
 * [ERC20Basic](ERC20Basic.md)

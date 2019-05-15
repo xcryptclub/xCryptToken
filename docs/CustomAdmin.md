@@ -3,7 +3,7 @@
 View Source: [contracts/CustomAdmin.sol](../contracts/CustomAdmin.sol)
 
 **↗ Extends: [Ownable](Ownable.md)**
-**↘ Derived Contracts: [BulkTransfer](BulkTransfer.md), [CustomPausable](CustomPausable.md), [Reclaimable](Reclaimable.md)**
+**↘ Derived Contracts: [BulkTransfer](BulkTransfer.md), [CustomLockable](CustomLockable.md), [CustomPausable](CustomPausable.md), [Reclaimable](Reclaimable.md)**
 
 **CustomAdmin**
 
@@ -128,6 +128,7 @@ returns(bool)
 * [BulkTransfer](BulkTransfer.md)
 * [BurnableToken](BurnableToken.md)
 * [CustomAdmin](CustomAdmin.md)
+* [CustomLockable](CustomLockable.md)
 * [CustomPausable](CustomPausable.md)
 * [ERC20](ERC20.md)
 * [ERC20Basic](ERC20Basic.md)

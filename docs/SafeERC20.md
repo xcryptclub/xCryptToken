@@ -63,6 +63,7 @@ function safeApprove(ERC20 _token, address _spender, uint256 _value) internal no
 * [BulkTransfer](BulkTransfer.md)
 * [BurnableToken](BurnableToken.md)
 * [CustomAdmin](CustomAdmin.md)
+* [CustomLockable](CustomLockable.md)
 * [CustomPausable](CustomPausable.md)
 * [ERC20](ERC20.md)
 * [ERC20Basic](ERC20Basic.md)

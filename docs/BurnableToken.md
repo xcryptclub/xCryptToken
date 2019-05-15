@@ -55,6 +55,7 @@ function _burn(address _who, uint256 _value) internal nonpayable
 * [BulkTransfer](BulkTransfer.md)
 * [BurnableToken](BurnableToken.md)
 * [CustomAdmin](CustomAdmin.md)
+* [CustomLockable](CustomLockable.md)
 * [CustomPausable](CustomPausable.md)
 * [ERC20](ERC20.md)
 * [ERC20Basic](ERC20Basic.md)

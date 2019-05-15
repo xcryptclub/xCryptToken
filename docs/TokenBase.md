@@ -2,12 +2,22 @@
 
 View Source: [contracts/TokenBase.sol](../contracts/TokenBase.sol)
 
-**↗ Extends: [StandardToken](StandardToken.md), [TransferState](TransferState.md), [BulkTransfer](BulkTransfer.md), [Reclaimable](Reclaimable.md), [BurnableToken](BurnableToken.md)**
+**↗ Extends: [StandardToken](StandardToken.md), [TransferState](TransferState.md), [BulkTransfer](BulkTransfer.md), [Reclaimable](Reclaimable.md), [BurnableToken](BurnableToken.md), [CustomLockable](CustomLockable.md)**
 **↘ Derived Contracts: [xCryptToken](xCryptToken.md)**
 
 **TokenBase**
 
-xCrypt Token
+XCRYPT is the first crypto ecosystem with a high added value
+with the heart in its exchange: Hybrid, ready for STO
+and for a marketplace made for the ERC721. We created this
+end to end system which includes a Debit Card
+and a Social Media Trading system which is
+an advanced investment solution, which enables trading
+on one account managed by a skillfull and experienced trader
+using his own funds and joint funds invested by other traders
+in his SMT account. This ecosystem is made to be at the same level
+as the world’s big players, and even surpass them, for we are already
+suitable in this field’s future.
 
 ## Contract Members
 **Constants & Variables**
@@ -45,8 +55,10 @@ event Mint(address indexed to, uint256  amount);
 
 ⤾ overrides [BasicToken.transfer](BasicToken.md#transfer)
 
+This function is overridden to leverage transfer state and lockable feature.
+
 ```js
-function transfer(address _to, uint256 _value) public nonpayable canTransfer 
+function transfer(address _to, uint256 _value) public nonpayable canTransfer revertIfLocked 
 returns(bool)
 ```
 
@@ -64,7 +76,7 @@ returns(bool)
 Transfers tokens from a specified wallet address.
 
 ```js
-function transferFrom(address _from, address _to, uint256 _value) public nonpayable canTransfer 
+function transferFrom(address _from, address _to, uint256 _value) public nonpayable canTransfer revertIfLocked 
 returns(bool)
 ```
 
@@ -83,7 +95,7 @@ returns(bool)
 Approves a wallet address to spend on behalf of the sender.
 
 ```js
-function approve(address _spender, uint256 _value) public nonpayable canTransfer 
+function approve(address _spender, uint256 _value) public nonpayable canTransfer revertIfLocked 
 returns(bool)
 ```
 
@@ -101,7 +113,7 @@ returns(bool)
 Increases the approval of the spender.
 
 ```js
-function increaseApproval(address _spender, uint256 _addedValue) public nonpayable canTransfer 
+function increaseApproval(address _spender, uint256 _addedValue) public nonpayable canTransfer revertIfLocked 
 returns(bool)
 ```
 
@@ -119,7 +131,7 @@ returns(bool)
 Decreases the approval of the spender.
 
 ```js
-function decreaseApproval(address _spender, uint256 _subtractedValue) public nonpayable canTransfer 
+function decreaseApproval(address _spender, uint256 _subtractedValue) public nonpayable canTransfer revertIfLocked 
 returns(bool)
 ```
 
@@ -166,6 +178,7 @@ returns(bool)
 * [BulkTransfer](BulkTransfer.md)
 * [BurnableToken](BurnableToken.md)
 * [CustomAdmin](CustomAdmin.md)
+* [CustomLockable](CustomLockable.md)
 * [CustomPausable](CustomPausable.md)
 * [ERC20](ERC20.md)
 * [ERC20Basic](ERC20Basic.md)

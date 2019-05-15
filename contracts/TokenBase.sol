@@ -18,6 +18,7 @@ import "./CustomPausable.sol";
 import "./TransferState.sol";
 import "./BulkTransfer.sol";
 import "./Reclaimable.sol";
+import "./CustomLockable.sol";
 
 
 ///@title xCrypt Token Base Contract
@@ -33,7 +34,7 @@ import "./Reclaimable.sol";
 ///in his SMT account. This ecosystem is made to be at the same level
 ///as the world’s big players, and even surpass them, for we are already
 ///suitable in this field’s future.
-contract TokenBase is StandardToken, TransferState, BulkTransfer, Reclaimable, BurnableToken {
+contract TokenBase is StandardToken, TransferState, BulkTransfer, Reclaimable, BurnableToken, CustomLockable {
   //solhint-disable
   uint8 public constant decimals = 18;
   string public constant name = "xCrypt Token";
@@ -53,46 +54,67 @@ contract TokenBase is StandardToken, TransferState, BulkTransfer, Reclaimable, B
   ///@notice Transfers the specified value of XCT tokens to the destination address.
   //Transfers can only happen when the transfer state is enabled.
   //Transfer state can only be enabled after the end of the crowdsale.
+  ///@dev This function is overridden to leverage transfer state and lockable feature.
   ///@param _to The destination wallet address to transfer funds to.
   ///@param _value The amount of tokens to send to the destination address.
-  function transfer(address _to, uint256 _value) public canTransfer(msg.sender) returns(bool) {
+  function transfer(address _to, uint256 _value)
+  public
+  canTransfer(msg.sender)
+  revertIfLocked(msg.sender)
+  returns(bool) {
     require(_to != address(0), "Invalid address.");
     return super.transfer(_to, _value);
   }
 
   ///@notice Transfers tokens from a specified wallet address.
-  ///@dev This function is overridden to leverage transfer state feature.
+  ///@dev This function is overridden to leverage transfer state and lockable feature.
   ///@param _from The address to transfer funds from.
   ///@param _to The address to transfer funds to.
   ///@param _value The amount of tokens to transfer.
-  function transferFrom(address _from, address _to, uint256 _value) public canTransfer(_from) returns(bool) {
+  function transferFrom(address _from, address _to, uint256 _value)
+  public
+  canTransfer(_from)
+  revertIfLocked(_from)
+  returns(bool) {
     require(_to != address(0), "Invalid address.");
     return super.transferFrom(_from, _to, _value);
   }
 
   ///@notice Approves a wallet address to spend on behalf of the sender.
-  ///@dev This function is overridden to leverage transfer state feature.
+  ///@dev This function is overridden to leverage transfer state and lockable feature.
   ///@param _spender The address which is approved to spend on behalf of the sender.
   ///@param _value The amount of tokens approve to spend.
-  function approve(address _spender, uint256 _value) public canTransfer(msg.sender) returns(bool) {
+  function approve(address _spender, uint256 _value)
+  public
+  canTransfer(msg.sender)
+  revertIfLocked(msg.sender)
+  returns(bool) {
     require(_spender != address(0), "Invalid address.");
     return super.approve(_spender, _value);
   }
 
   ///@notice Increases the approval of the spender.
-  ///@dev This function is overridden to leverage transfer state feature.
+  ///@dev This function is overridden to leverage transfer state and lockable feature.
   ///@param _spender The address which is approved to spend on behalf of the sender.
   ///@param _addedValue The added amount of tokens approved to spend.
-  function increaseApproval(address _spender, uint256 _addedValue) public canTransfer(msg.sender) returns(bool) {
+  function increaseApproval(address _spender, uint256 _addedValue)
+  public
+  canTransfer(msg.sender)
+  revertIfLocked(msg.sender)
+  returns(bool) {
     require(_spender != address(0), "Invalid address.");
     return super.increaseApproval(_spender, _addedValue);
   }
 
   ///@notice Decreases the approval of the spender.
-  ///@dev This function is overridden to leverage transfer state feature.
+  ///@dev This function is overridden to leverage transfer state and lockable feature.
   ///@param _spender The address of the spender to decrease the allocation from.
   ///@param _subtractedValue The amount of tokens to subtract from the approved allocation.
-  function decreaseApproval(address _spender, uint256 _subtractedValue) public canTransfer(msg.sender) returns(bool) {
+  function decreaseApproval(address _spender, uint256 _subtractedValue)
+  public
+  canTransfer(msg.sender)
+  revertIfLocked(msg.sender)
+  returns(bool) {
     require(_spender != address(0), "Invalid address.");
     return super.decreaseApproval(_spender, _subtractedValue);
   }

@@ -21,7 +21,7 @@ import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
 
 ///@title This contract enables to create multiple contract administrators.
 contract CustomAdmin is Ownable {
-  ///@notice List of administrators.
+  ///List of administrators.
   mapping(address => bool) public admins;
 
   event AdminAdded(address indexed _address);
