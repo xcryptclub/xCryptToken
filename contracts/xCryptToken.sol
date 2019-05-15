@@ -17,6 +17,17 @@ import "./TokenBase.sol";
 
 ///@title xCrypt Token
 ///@author Binod Nirvan
+///@notice XCRYPT is the first crypto ecosystem with a high added value
+///with the heart in its exchange: Hybrid, ready for STO
+///and for a marketplace made for the ERC721. We created this
+///end to end system which includes a Debit Card
+///and a Social Media Trading system which is
+///an advanced investment solution, which enables trading
+///on one account managed by a skillfull and experienced trader
+///using his own funds and joint funds invested by other traders
+///in his SMT account. This ecosystem is made to be at the same level
+///as the world’s big players, and even surpass them, for we are already
+///suitable in this field’s future.
 contract xCryptToken is TokenBase {
   uint256 public constant ALLOCATION_FOR_PARTNERS_AND_ADVISORS = 16 * MILLION;
   uint256 public constant ALLOCATION_FOR_TEAM = 30 * MILLION;

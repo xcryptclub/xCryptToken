@@ -22,7 +22,17 @@ import "./Reclaimable.sol";
 
 ///@title xCrypt Token Base Contract
 ///@author Binod Nirvan
-///@notice xCrypt Token
+///@notice XCRYPT is the first crypto ecosystem with a high added value
+///with the heart in its exchange: Hybrid, ready for STO
+///and for a marketplace made for the ERC721. We created this
+///end to end system which includes a Debit Card
+///and a Social Media Trading system which is
+///an advanced investment solution, which enables trading
+///on one account managed by a skillfull and experienced trader
+///using his own funds and joint funds invested by other traders
+///in his SMT account. This ecosystem is made to be at the same level
+///as the world’s big players, and even surpass them, for we are already
+///suitable in this field’s future.
 contract TokenBase is StandardToken, TransferState, BulkTransfer, Reclaimable, BurnableToken {
   //solhint-disable
   uint8 public constant decimals = 18;
