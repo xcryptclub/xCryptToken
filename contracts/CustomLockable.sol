@@ -41,15 +41,15 @@ contract CustomLockable is CustomAdmin {
   event TokenUnlocked(address indexed _address);
   event LockingDisabled();
 
-  ///@notice Reverts this transfer if the benficiary is in the locking list.
-  modifier revertIfLocked(address _beneficiary) {
-    require(!isLocked(_beneficiary), "The operation was cancelled because your tokens are locked.");
+  ///@notice Reverts this transfer if the wallet is in the locking list.
+  modifier revertIfLocked(address _wallet) {
+    require(!isLocked(_wallet), "The operation was cancelled because your tokens are locked.");
     _;
   }
 
   ///@notice Checks if a wallet is locked for transfers.
-  function isLocked(address _beneficiary) private view returns(bool) {
-    uint256 _lockedUntil = lockingList[_beneficiary];
+  function isLocked(address _wallet) private view returns(bool) {
+    uint256 _lockedUntil = lockingList[_wallet];
 
     if(_lockedUntil > 0 && _lockedUntil > now) {
       return true;
@@ -69,7 +69,7 @@ contract CustomLockable is CustomAdmin {
 
     lockingList[_address] = _releaseDate;
 
-    if(_releaseDate > 0){
+    if(_releaseDate > 0) {
       emit TokenLocked(_address, _releaseDate);
     } else {
       emit TokenUnlocked(_address);
