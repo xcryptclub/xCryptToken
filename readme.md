@@ -24,6 +24,8 @@ npm install solidoc -g
 npm install sol-flattener -g
 ```
 
+[Read Flattened Contract](.flattened/xCryptToken.sol)
+
 **Clone the Repository**
 
 ```git
@@ -44,12 +46,6 @@ npm install
 truffle test
 ```
 
-## Create Documentation
-
-```shell
-solidoc
-```
-
 ## Flatten Contract
 
 ```shell
@@ -63,9 +59,7 @@ npm run solhint
 npm run solium
 ```
 
-[Read Documentation](docs/xCryptToken.md)
-
-### Code Coverage
+## Code Coverage
 
 ![xCrypt Token Code Coverage](images/coverage.png)
 
@@ -73,6 +67,16 @@ npm run solium
 
 ```shell
 npm run coverage
+```
+
+## Documentation
+
+[Reference Documentation](docs/xCryptToken.md)
+
+**Recompile Documentation**
+
+```shell
+solidoc
 ```
 
 ## xCrypt ECOSYSTEM
