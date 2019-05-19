@@ -28,7 +28,7 @@ bool public canLock;
 **Events**
 
 ```js
-event TokenLocked(address indexed _address, uint256  releaseDate);
+event TokenLocked(address indexed _address, uint256  _releaseDate);
 event TokenUnlocked(address indexed _address);
 event LockingDisabled();
 ```
@@ -39,21 +39,21 @@ event LockingDisabled();
 
 ### revertIfLocked
 
-Reverts this transfer if the benficiary is in the locking list.
+Reverts this transfer if the wallet is in the locking list.
 
 ```js
-modifier revertIfLocked(address _beneficiary) internal
+modifier revertIfLocked(address _wallet) internal
 ```
 
 **Arguments**
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _beneficiary | address |  | 
+| _wallet | address |  | 
 
 ## Functions
 
-- [isLocked(address _beneficiary)](#islocked)
+- [isLocked(address _wallet)](#islocked)
 - [addLock(address _address, uint256 _releaseDate)](#addlock)
 - [addManyLocks(address[] _accounts, uint256 _releaseDate)](#addmanylocks)
 - [disableLocking()](#disablelocking)
@@ -63,7 +63,7 @@ modifier revertIfLocked(address _beneficiary) internal
 Checks if a wallet is locked for transfers.
 
 ```js
-function isLocked(address _beneficiary) private view
+function isLocked(address _wallet) public view
 returns(bool)
 ```
 
@@ -71,7 +71,7 @@ returns(bool)
 
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
-| _beneficiary | address |  | 
+| _wallet | address |  | 
 
 ### addLock
 

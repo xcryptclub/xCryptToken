@@ -50,7 +50,6 @@ modifier canTransfer(address _from) internal
 ### enableTransfers
 
 This function enables token transfers for everyone.
-Can only be enabled after the end of the ICO.
 
 ```js
 function enableTransfers() external nonpayable onlyAdmin whenNotPaused 

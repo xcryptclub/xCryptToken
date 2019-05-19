@@ -590,7 +590,6 @@ contract TransferState is CustomPausable {
   }
 
   ///@notice This function enables token transfers for everyone.
-  ///Can only be enabled after the end of the ICO.
   function enableTransfers() external onlyAdmin whenNotPaused returns(bool) {
     require(!released, "Invalid operation. The transfer state is no more restricted.");
 
