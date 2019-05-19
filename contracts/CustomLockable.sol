@@ -37,7 +37,7 @@ contract CustomLockable is CustomAdmin {
   ///This feature should be turned off as soon as lockings are created.
   bool public canLock = true;
 
-  event TokenLocked(address indexed _address, uint256 releaseDate);
+  event TokenLocked(address indexed _address, uint256 _releaseDate);
   event TokenUnlocked(address indexed _address);
   event LockingDisabled();
 
@@ -48,7 +48,7 @@ contract CustomLockable is CustomAdmin {
   }
 
   ///@notice Checks if a wallet is locked for transfers.
-  function isLocked(address _wallet) private view returns(bool) {
+  function isLocked(address _wallet) public view returns(bool) {
     uint256 _lockedUntil = lockingList[_wallet];
 
     if(_lockedUntil > 0 && _lockedUntil > now) {
@@ -107,7 +107,7 @@ contract CustomLockable is CustomAdmin {
     require(canLock, "The token lock feature is already disabled.");
 
     canLock = false;
-
+    emit LockingDisabled();
     return true;
   }
 }

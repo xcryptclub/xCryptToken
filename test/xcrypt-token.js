@@ -27,15 +27,9 @@ contract("xCryptToken", function(accounts) {
       assert.equal(await token.name(), "xCrypt Token");
       assert.equal(await token.symbol(), "XCT");
 
-      (await token.MAX_SUPPLY()).should.bignumber.equal(
-        ether(expectedMaxSupply)
-      );
-      (await token.totalSupply()).should.bignumber.equal(
-        ether(expectedInitialSupply)
-      );
-      (await token.balanceOf(owner)).should.bignumber.equal(
-        ether(expectedInitialSupply)
-      );
+      (await token.MAX_SUPPLY()).should.bignumber.equal(ether(expectedMaxSupply));
+      (await token.totalSupply()).should.bignumber.equal(ether(expectedInitialSupply));
+      (await token.balanceOf(owner)).should.bignumber.equal(ether(expectedInitialSupply));
     });
   });
 
@@ -52,22 +46,20 @@ contract("xCryptToken", function(accounts) {
 
       await token
         .mintPartnerAndAdvisorTokens({
-          from: accounts[1]
+          from: accounts[1],
         })
         .should.be.rejectedWith(EVMRevert);
 
       await token.addAdmin(accounts[1]);
 
       await token.mintPartnerAndAdvisorTokens({
-        from: accounts[1]
+        from: accounts[1],
       });
 
       const balance = await token.balanceOf(accounts[1]);
       balance.should.be.bignumber.equal(partnerAndAdvisorTokenCount);
 
-      (await token.totalSupply()).should.be.bignumber.equal(
-        totalSupply.add(partnerAndAdvisorTokenCount)
-      );
+      (await token.totalSupply()).should.be.bignumber.equal(totalSupply.add(partnerAndAdvisorTokenCount));
 
       /*-------------------------------------------------------------
        ADDITIONAL CORRECTNESS RULE(S) 
@@ -76,7 +68,7 @@ contract("xCryptToken", function(accounts) {
       //additional minting attempts of partner and advisory tokens should be declined.
       await token
         .mintPartnerAndAdvisorTokens({
-          from: accounts[1]
+          from: accounts[1],
         })
         .should.be.rejectedWith(EVMRevert);
     });
@@ -87,27 +79,25 @@ contract("xCryptToken", function(accounts) {
 
       await token
         .mintTeamTokens({
-          from: accounts[1]
+          from: accounts[1],
         })
         .should.be.rejectedWith(EVMRevert);
 
       await token.addAdmin(accounts[1]);
 
       await token.mintTeamTokens({
-        from: accounts[1]
+        from: accounts[1],
       });
 
       const balance = await token.balanceOf(accounts[1]);
       balance.should.be.bignumber.equal(teamTokenCount);
 
-      (await token.totalSupply()).should.be.bignumber.equal(
-        totalSupply.add(teamTokenCount)
-      );
+      (await token.totalSupply()).should.be.bignumber.equal(totalSupply.add(teamTokenCount));
 
       //additional minting attempts of team tokens should be declined.
       await token
         .mintTeamTokens({
-          from: accounts[1]
+          from: accounts[1],
         })
         .should.be.rejectedWith(EVMRevert);
     });
@@ -118,27 +108,25 @@ contract("xCryptToken", function(accounts) {
 
       await token
         .mintBonusAndReservesTokens({
-          from: accounts[1]
+          from: accounts[1],
         })
         .should.be.rejectedWith(EVMRevert);
 
       await token.addAdmin(accounts[1]);
 
       await token.mintBonusAndReservesTokens({
-        from: accounts[1]
+        from: accounts[1],
       });
 
       const balance = await token.balanceOf(accounts[1]);
       balance.should.be.bignumber.equal(bonusAndReserveTokenCount);
 
-      (await token.totalSupply()).should.be.bignumber.equal(
-        totalSupply.add(bonusAndReserveTokenCount)
-      );
+      (await token.totalSupply()).should.be.bignumber.equal(totalSupply.add(bonusAndReserveTokenCount));
 
       //additional minting attempts of bonus and reserve tokens should be declined.
       await token
         .mintBonusAndReservesTokens({
-          from: accounts[1]
+          from: accounts[1],
         })
         .should.be.rejectedWith(EVMRevert);
     });
@@ -149,27 +137,25 @@ contract("xCryptToken", function(accounts) {
 
       await token
         .mintBountyTokens({
-          from: accounts[1]
+          from: accounts[1],
         })
         .should.be.rejectedWith(EVMRevert);
 
       await token.addAdmin(accounts[1]);
 
       await token.mintBountyTokens({
-        from: accounts[1]
+        from: accounts[1],
       });
 
       const balance = await token.balanceOf(accounts[1]);
       balance.should.be.bignumber.equal(bountyTokenCount);
 
-      (await token.totalSupply()).should.be.bignumber.equal(
-        totalSupply.add(bountyTokenCount)
-      );
+      (await token.totalSupply()).should.be.bignumber.equal(totalSupply.add(bountyTokenCount));
 
       //additional minting attempts of bounty tokens should be declined.
       await token
         .mintBountyTokens({
-          from: accounts[1]
+          from: accounts[1],
         })
         .should.be.rejectedWith(EVMRevert);
     });

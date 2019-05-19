@@ -26,15 +26,9 @@ contract("TokenBase", function(accounts) {
       assert.equal(await token.name(), "xCrypt Token");
       assert.equal(await token.symbol(), "XCT");
 
-      (await token.MAX_SUPPLY()).should.bignumber.equal(
-        ether(expectedMaxSupply)
-      );
-      (await token.totalSupply()).should.bignumber.equal(
-        ether(expectedInitialSupply)
-      );
-      (await token.balanceOf(owner)).should.bignumber.equal(
-        ether(expectedInitialSupply)
-      );
+      (await token.MAX_SUPPLY()).should.bignumber.equal(ether(expectedMaxSupply));
+      (await token.totalSupply()).should.bignumber.equal(ether(expectedInitialSupply));
+      (await token.balanceOf(owner)).should.bignumber.equal(ether(expectedInitialSupply));
     });
   });
 
@@ -52,7 +46,7 @@ contract("TokenBase", function(accounts) {
 
       await token
         .enableTransfers({
-          from: accounts[1]
+          from: accounts[1],
         })
         .should.be.rejectedWith(EVMRevert);
     });
@@ -62,7 +56,7 @@ contract("TokenBase", function(accounts) {
       await token.pause();
       await token
         .enableTransfers({
-          from: accounts[1]
+          from: accounts[1],
         })
         .should.be.rejectedWith(EVMRevert);
     });
@@ -88,7 +82,7 @@ contract("TokenBase", function(accounts) {
       assert.equal(balance.toNumber(), 10);
 
       await token.transfer(accounts[2], 9, {
-        from: accounts[1]
+        from: accounts[1],
       });
 
       let accounts2Balance = await token.balanceOf(accounts[2]);
@@ -96,7 +90,7 @@ contract("TokenBase", function(accounts) {
 
       await token
         .transfer(accounts[3], 8, {
-          from: accounts[2]
+          from: accounts[2],
         })
         .should.be.rejectedWith(EVMRevert);
     });
@@ -109,7 +103,7 @@ contract("TokenBase", function(accounts) {
       await token.transfer(accounts[3], 10);
       await token
         .approve(accounts[2], 9, {
-          from: accounts[3]
+          from: accounts[3],
         })
         .should.be.rejectedWith(EVMRevert);
     });
@@ -123,12 +117,12 @@ contract("TokenBase", function(accounts) {
 
       await token.transfer(accounts[1], 11);
       await token.approve(accounts[3], 10, {
-        from: accounts[1]
+        from: accounts[1],
       });
       await token.removeAdmin(accounts[1]);
       await token
         .increaseApproval(accounts[3], 1, {
-          from: accounts[1]
+          from: accounts[1],
         })
         .should.be.rejectedWith(EVMRevert);
     });
@@ -142,12 +136,12 @@ contract("TokenBase", function(accounts) {
 
       await token.transfer(accounts[1], 11);
       await token.approve(accounts[3], 10, {
-        from: accounts[1]
+        from: accounts[1],
       });
       await token.removeAdmin(accounts[1]);
       await token
         .decreaseApproval(accounts[3], 1, {
-          from: accounts[1]
+          from: accounts[1],
         })
         .should.be.rejectedWith(EVMRevert);
     });
@@ -155,7 +149,7 @@ contract("TokenBase", function(accounts) {
     it("must only allow an admin to transfer from approved accounts when the transfer state is disabled.", async () => {
       await token.approve(accounts[3], 10);
       await token.transferFrom(accounts[0], accounts[2], 1, {
-        from: accounts[3]
+        from: accounts[3],
       });
 
       let balance = await token.balanceOf(accounts[2]);
@@ -163,12 +157,12 @@ contract("TokenBase", function(accounts) {
 
       await token.transfer(accounts[1], 10);
       await token.approve(accounts[4], 10, {
-        from: accounts[1]
+        from: accounts[1],
       });
       await token.removeAdmin(accounts[1]);
       await token
         .transferFrom(accounts[1], accounts[0], 1, {
-          from: accounts[4]
+          from: accounts[4],
         })
         .should.be.rejectedWith(EVMRevert);
     });
@@ -190,14 +184,14 @@ contract("TokenBase", function(accounts) {
       assert.equal(balance.toNumber(), 10);
 
       await token.transfer(accounts[2], 9, {
-        from: accounts[1]
+        from: accounts[1],
       });
       let accounts2Balance = await token.balanceOf(accounts[2]);
       assert.equal(accounts2Balance.toNumber(), 9);
 
       await token
         .transfer(accounts[3], 8, {
-          from: accounts[2]
+          from: accounts[2],
         })
         .should.be.rejectedWith(EVMRevert);
     });
@@ -210,7 +204,7 @@ contract("TokenBase", function(accounts) {
       await token.transfer(accounts[3], 10);
       await token
         .approve(accounts[2], 9, {
-          from: accounts[3]
+          from: accounts[3],
         })
         .should.be.rejectedWith(EVMRevert);
     });
@@ -224,12 +218,12 @@ contract("TokenBase", function(accounts) {
 
       await token.transfer(accounts[1], 11);
       await token.approve(accounts[3], 10, {
-        from: accounts[1]
+        from: accounts[1],
       });
       await token.removeAdmin(accounts[1]);
       await token
         .increaseApproval(accounts[3], 1, {
-          from: accounts[1]
+          from: accounts[1],
         })
         .should.be.rejectedWith(EVMRevert);
     });
@@ -243,12 +237,12 @@ contract("TokenBase", function(accounts) {
 
       await token.transfer(accounts[1], 11);
       await token.approve(accounts[3], 10, {
-        from: accounts[1]
+        from: accounts[1],
       });
       await token.removeAdmin(accounts[1]);
       await token
         .decreaseApproval(accounts[3], 1, {
-          from: accounts[1]
+          from: accounts[1],
         })
         .should.be.rejectedWith(EVMRevert);
     });
@@ -257,19 +251,19 @@ contract("TokenBase", function(accounts) {
       await token.approve(accounts[3], 10);
 
       await token.transferFrom(accounts[0], accounts[2], 1, {
-        from: accounts[3]
+        from: accounts[3],
       });
       let balance = await token.balanceOf(accounts[2]);
       assert.equal(balance.toNumber(), 1);
 
       await token.transfer(accounts[1], 10);
       await token.approve(accounts[4], 10, {
-        from: accounts[1]
+        from: accounts[1],
       });
       await token.removeAdmin(accounts[1]);
       await token
         .transferFrom(accounts[1], accounts[0], 1, {
-          from: accounts[4]
+          from: accounts[4],
         })
         .should.be.rejectedWith(EVMRevert);
     });
@@ -287,7 +281,7 @@ contract("TokenBase", function(accounts) {
     it("must correctly reduce the total supply when the burn feature is used.", async () => {
       let totalSupply = await token.totalSupply();
       await token.burn(1, {
-        from: accounts[2]
+        from: accounts[2],
       });
 
       (await token.totalSupply()).should.be.bignumber.equal(totalSupply.sub(1));
@@ -296,12 +290,10 @@ contract("TokenBase", function(accounts) {
     it("must correctly reduce the balance when the burn feature is used.", async () => {
       let balance = await token.balanceOf(accounts[2]);
       await token.burn(1, {
-        from: accounts[2]
+        from: accounts[2],
       });
 
-      (await token.balanceOf(accounts[2])).should.be.bignumber.equal(
-        balance.sub(1)
-      );
+      (await token.balanceOf(accounts[2])).should.be.bignumber.equal(balance.sub(1));
     });
   });
 
@@ -315,7 +307,7 @@ contract("TokenBase", function(accounts) {
 
     it("must enable transfers for everyone when the token is not paused and the transfer state is released.", async () => {
       await token.transfer(accounts[2], 10, {
-        from: accounts[1]
+        from: accounts[1],
       });
       let balance = await token.balanceOf(accounts[2]);
       assert.equal(balance.toNumber(), 10);
@@ -323,7 +315,7 @@ contract("TokenBase", function(accounts) {
 
     it("must enable approvals for everyone when the token is not paused and the transfer state is released.", async () => {
       await token.approve(accounts[3], 10, {
-        from: accounts[1]
+        from: accounts[1],
       });
       let account3Allowance = await token.allowance(accounts[1], accounts[3]);
       assert.equal(account3Allowance.toNumber(), 10);
@@ -331,10 +323,10 @@ contract("TokenBase", function(accounts) {
 
     it("must allow increasing approvals for everyone when the token is not paused and the transfer state is released.", async () => {
       await token.approve(accounts[3], 8, {
-        from: accounts[1]
+        from: accounts[1],
       });
       await token.increaseApproval(accounts[3], 1, {
-        from: accounts[1]
+        from: accounts[1],
       });
       let account3Allowance = await token.allowance(accounts[1], accounts[3]);
       assert.equal(account3Allowance.toNumber(), 9);
@@ -342,10 +334,10 @@ contract("TokenBase", function(accounts) {
 
     it("must allow decreasing approvals for everyone when the token is not paused and the transfer state is released.", async () => {
       await token.approve(accounts[3], 10, {
-        from: accounts[1]
+        from: accounts[1],
       });
       await token.decreaseApproval(accounts[3], 1, {
-        from: accounts[1]
+        from: accounts[1],
       });
       let account3Allowance = await token.allowance(accounts[1], accounts[3]);
       assert.equal(account3Allowance.toNumber(), 9);
@@ -353,10 +345,10 @@ contract("TokenBase", function(accounts) {
 
     it("must allow transfer from approved accounts for everyone when the token is not paused and the transfer state is released.", async () => {
       await token.approve(accounts[3], 10, {
-        from: accounts[1]
+        from: accounts[1],
       });
       await token.transferFrom(accounts[1], accounts[2], 1, {
-        from: accounts[3]
+        from: accounts[3],
       });
       let balance = await token.balanceOf(accounts[2]);
       assert.equal(balance.toNumber(), 1);
