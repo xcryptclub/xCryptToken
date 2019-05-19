@@ -44,12 +44,6 @@ npm install
 truffle test
 ```
 
-## Create Coverage Report
-
-```shell
-npm run coverage
-```
-
 ## Create Documentation
 
 ```shell
@@ -70,6 +64,16 @@ npm run solium
 ```
 
 [Read Documentation](docs/xCryptToken.md)
+
+### Code Coverage
+
+![xCrypt Token Code Coverage](images/coverage.png)
+
+**Create Coverage Report**
+
+```shell
+npm run coverage
+```
 
 ## xCrypt ECOSYSTEM
 
