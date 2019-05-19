@@ -1,4 +1,4 @@
-# XCRYPT
+# xCrypt Token
 
 **About Us**
 
@@ -11,6 +11,18 @@ This repository contains ERC20 token contract code of xCrypt.club.
 **Install Truffle Tools**
 
 https://truffleframework.com
+
+**Install Solidoc**
+
+```node
+npm install solidoc -g
+```
+
+**Install Solidity Flattener**
+
+```node
+npm install sol-flattener -g
+```
 
 **Clone the Repository**
 
@@ -26,19 +38,38 @@ npm install
 
 ## Running Tests
 
-**Start Local RPC Client**
-
-```shell
-ganache-cli
-```
-
 **Run Tests**
 
 ```shell
 truffle test
 ```
 
-[Documentation](docs/xCryptToken.md)
+## Create Coverage Report
+
+```shell
+npm run coverage
+```
+
+## Create Documentation
+
+```shell
+solidoc
+```
+
+## Flatten Contract
+
+```shell
+sol-flattener
+```
+
+## Other
+
+```shell
+npm run solhint
+npm run solium
+```
+
+[Read Documentation](docs/xCryptToken.md)
 
 ## xCrypt ECOSYSTEM
 
