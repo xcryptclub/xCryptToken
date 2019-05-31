@@ -1037,7 +1037,7 @@ contract xCryptToken is TokenBase {
 
   ///@notice Mints the below-mentioned amount of tokens allocated to bounties.
   function mintBountyTokens() external onlyAdmin returns(bool) {
-    return mintOnce("bonusAndReserves", msg.sender, ALLOCATION_FOR_BOUNTIES);
+    return mintOnce("bounty", msg.sender, ALLOCATION_FOR_BOUNTIES);
   }
 
   ///@notice Computes keccak256 hash of the supplied value.

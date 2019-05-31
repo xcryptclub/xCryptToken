@@ -24,8 +24,6 @@ npm install solidoc -g
 npm install sol-flattener -g
 ```
 
-[Read Flattened Contract](.flattened/xCryptToken.sol)
-
 **Clone the Repository**
 
 ```git
@@ -51,6 +49,8 @@ truffle test
 ```shell
 sol-flattener
 ```
+
+[Read Flattened Contract](.flattened/xCryptToken.sol)
 
 ## Other
 
