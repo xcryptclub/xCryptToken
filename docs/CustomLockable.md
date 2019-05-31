@@ -8,13 +8,14 @@ View Source: [contracts/CustomLockable.sol](../contracts/CustomLockable.sol)
 **CustomLockable**
 
 This contract enables xCrypt token admins
-to lock tokens on individual wallet basis.
-When tokens are locked on specific wallet,
+to lock tokens on an individual-wallet basis.
+When tokens are locked for specific wallet,
 they cannot transfer their balances
-until the end of the locking period.
+until the end of their locking period.
 Furthermore, this feature is created to specifically
 lock bounty, advisory, and team tokens
 for a set period of time.
+This feature once turned off cannot be switched on back again.
 
 ## Contract Members
 **Constants & Variables**
