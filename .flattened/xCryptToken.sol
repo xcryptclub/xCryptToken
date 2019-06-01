@@ -774,7 +774,7 @@ limitations under the License.
 ///@title Custom Lockable Contract
 ///@author Binod Nirvan
 ///@notice This contract enables xCrypt token admins
-///to lock tokens on an individual wallet basis.
+///to lock tokens on an individual-wallet basis.
 ///When tokens are locked for specific wallet,
 ///they cannot transfer their balances
 ///until the end of their locking period.
